@@ -4,6 +4,8 @@ chardet==4.0.0
 click==7.1.2
 Flask==1.1.2
 Flask-Cors==3.0.10
+colorama==0.4.4
+demoji==0.4.0
 google-api-core==1.24.1
 google-api-python-client==1.12.8
 google-auth==1.24.0
@@ -15,6 +17,7 @@ idna==2.10
 itsdangerous==1.1.0
 Jinja2==2.11.2
 MarkupSafe==1.1.1
+langdetect==1.0.8
 numpy==1.19.5
 oauthlib==3.1.0
 pandas==1.2.0
