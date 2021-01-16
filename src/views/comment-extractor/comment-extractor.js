@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../components/logo/logo'
-import { Input } from 'antd';
 import './comment-extractor.css'
 
 
@@ -8,8 +7,11 @@ const CommentExtractor = () => {
     return (
         <div>
             <Logo />
-            <Input
-                size="large"
+            <input
+                placeholder="API Key"
+            />
+            <input
+                placeholder="Video Id"
             />
         </div>
     )

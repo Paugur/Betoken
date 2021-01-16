@@ -13,7 +13,7 @@ export class App extends React.Component {
           <Navigation />
         </Route>
         <Route exact path='/' component={HomePage} />
-        <Route exact path='/start' component={CommentExtractor} />
+        <Route exact path='/search' component={CommentExtractor} />
       </div>
     );
   }
