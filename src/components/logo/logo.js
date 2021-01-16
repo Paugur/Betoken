@@ -4,7 +4,7 @@ import './logo.css'
 
 const Logo = () => {
     return (
-        <div>
+        <div className='floating'>
             <img src={logo} className="logo" alt="Paugur" />
         </div>
     )
