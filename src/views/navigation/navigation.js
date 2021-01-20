@@ -8,7 +8,7 @@ const Navigation = () => {
         <div className='header'>
             <Link className='start' to='/search'>
                 Query
-            </Link>
+                </Link>
             <div className='options'>
                 <Link className='option' to='/about'>
                     About
