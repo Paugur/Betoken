@@ -13,7 +13,7 @@
     width: 30%;
     border: none;
     border-radius: 0;
-    border: 1px solid black;
+    border: 1px solid grey;
     margin: 25px 0;
 }
 .inputArea .inputHandle:focus {
@@ -28,7 +28,7 @@
     letter-spacing: 0.2em;
 }
 .inputArea .inputHandleSize {
-    color: black;
+    color: gray;
     font-size: 16px;
     font-weight: normal;
     position: absolute;
@@ -37,8 +37,8 @@
     top: 10px;
     transition: 300ms ease all;
 }
-.inputArea .inputHandleSize .filled {
-    top: -22px;
+.inputArea .inputHandleSize.filled {
+    top: -25px;
     font-size: 18px;
-    color: black;
+    color: white;
 }

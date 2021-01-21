@@ -5,7 +5,7 @@ import './homepage.css'
 const HomePage = () => {
     return (
         <div>
-            <Logo />
+            <Logo className='homelogo' />
             <span>
                 <b>AI Based Comment Analyzation Tool</b>
             </span>
