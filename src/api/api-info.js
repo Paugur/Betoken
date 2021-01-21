@@ -1,0 +1,1 @@
+export const websitePrefix = "http://localhost:3000/";
