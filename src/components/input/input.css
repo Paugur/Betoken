@@ -6,29 +6,29 @@
 .inputArea .inputHandle {
     background: none;
     background-color: white;
-    color: grey;
+    color: black;
     font-size: 18px;
     padding: 10px 10px 10px 10px;
     display: block;
     width: 30%;
     border: none;
     border-radius: 0;
-    border: 1px solid grey;
+    border: 1px solid black;
     margin: 25px 0;
 }
 .inputArea .inputHandle:focus {
     outline: none;
 }
 .inputArea .inputHandle:focus ~ .inputHandleSize {
-    top: -22px;
+    top: -25px;
     font-size: 18px;
-    color: black;
+    color: white;
 }
 .inputArea input[type='password'] {
     letter-spacing: 0.2em;
 }
 .inputArea .inputHandleSize {
-    color: grey;
+    color: black;
     font-size: 16px;
     font-weight: normal;
     position: absolute;
@@ -37,7 +37,7 @@
     top: 10px;
     transition: 300ms ease all;
 }
-.inputArea .inputHandleSize.filled {
+.inputArea .inputHandleSize .filled {
     top: -22px;
     font-size: 18px;
     color: black;
