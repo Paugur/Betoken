@@ -8,7 +8,9 @@ import { useSelector } from 'react-redux';
 import './App.css';
 
 export const App = () => {
-  const loading = useSelector(state => state.loading);
+
+  const { loading } = useSelector(state => state.loadingReducer);
+
   return (
     <div className="App">
       {
@@ -17,9 +19,7 @@ export const App = () => {
           <LoadScreen />
           :
           <div>
-            <Route exact={false} path='/'>
-              <Navigation />
-            </Route>
+            <Route exact={false} path='/' component={Navigation} />
             <Route exact path='/' component={HomePage} />
             <Route exact path='/search' component={CommentExtractor} />
           </div>
