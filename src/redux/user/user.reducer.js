@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
     apiKey: "",
+    mediaPref: "Youtube"
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
