@@ -17,3 +17,23 @@ export const clearMediaId = () => ({
     type: 'CLEAR_MEDIA_ID',
     payload: ""
 })
+
+export const setCreatorInfo = info => ({
+    type: 'SET_CREATOR_INFO',
+    payload: info
+})
+
+export const clearCreatorInfo = () => ({
+    type: 'CLEAR_CREATOR_INFO',
+    payload: []
+})
+
+export const setVideoInfo = info => ({
+    type: 'SET_VIDEO_INFO',
+    payload: info
+})
+
+export const clearVideoInfo = () => ({
+    type: 'CLEAR_VIDEO_INFO',
+    payload: []
+})
