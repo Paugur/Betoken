@@ -6,8 +6,8 @@ import './comment-extractor.css'
 
 const CommentExtractor = () => {
     return (
-        <div>
-            <Logo className="logo" />
+        <div className="logo">
+            <Logo />
             <Extractor />
         </div>
     )

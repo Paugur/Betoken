@@ -4,8 +4,8 @@ import './homepage.css'
 
 const HomePage = () => {
     return (
-        <div>
-            <Logo className='homelogo' />
+        <div className='home'>
+            <Logo />
             <span>
                 <b>AI Based Comment Analyzation Tool</b>
             </span>
