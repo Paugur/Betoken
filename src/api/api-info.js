@@ -1,1 +1,1 @@
-export const websitePrefix = "http://localhost:3000/";
+export const websitePrefix = "http://0.0.0.0:80/";
