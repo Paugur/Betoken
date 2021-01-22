@@ -2,6 +2,11 @@
   display: flex;
   justify-content: space-between;
 }
+.starting{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 .start {
   padding: 25px;
   color: white; 
