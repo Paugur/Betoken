@@ -5,7 +5,7 @@ import { websitePrefix } from '../api-info'
 export const youtubeExtractor = (mediaId, apiKey) => {
     return axios({
         url: websitePrefix + 'api/youtube_extractor/' + mediaId + '/' + apiKey,
-        method: 'post',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         mode: 'cors',
     })
