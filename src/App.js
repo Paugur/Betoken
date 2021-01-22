@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React from 'react'
+import { Route } from 'react-router-dom'
+import Navigation from './views/navigation/navigation'
+import HomePage from './views/homepage/homepage';
+import CommentExtractor from './views/comment-extractor/comment-extractor'
+import LoadScreen from './views/load-screen/load-screen'
+import { useSelector } from 'react-redux';
 import './App.css';
 
-function App() {
+export const App = () => {
+
+  const { loading } = useSelector(state => state.loadingReducer);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        loading
+          ?
+          <LoadScreen />
+          :
+          <div>
+            <Route exact={false} path='/' component={Navigation} />
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/search' component={CommentExtractor} />
+          </div>
+      }
     </div>
   );
 }

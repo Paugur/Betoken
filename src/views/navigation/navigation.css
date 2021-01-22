@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.start {
+  padding: 25px;
+  color: white; 
+  text-decoration: none;
+}
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.option {
+  padding: 25px;
+  cursor: pointer;
+  color: white; 
+  text-decoration: none;
+}
