@@ -6,9 +6,11 @@ const Navigation = () => {
 
     return (
         <div className='header'>
-            <Link className='start' to='/search'>
-                Query
+            <div className='starting'>
+                <Link className='start' to='/search'>
+                    Query
                 </Link>
+            </div>
             <div className='options'>
                 <Link className='option' to='/about'>
                     About
