@@ -27,14 +27,11 @@ const CommentExtractor = () => {
     const onButtonRequest = () => {
         dispatch(startLoading());
         youtubeExtractor(mediaId, apiKey).then(response => {
-            dispatch(setVideoInfo(response.video));
-            dispatch(setCreatorInfo(response.channel));
+            dispatch(setVideoInfo(response.data.video));
+            dispatch(setCreatorInfo(response.data.channel));
+            dispatch(setComments(JSON.parse(response.data.comments)));
             dispatch(cancelLoading());
-            return response.comments.json()
-        }).then(comments => {
-            dispatch(setComments(comments))
         }).catch(error => {
-            console.log(error);
             dispatch(cancelLoading());
             alert('Something went wrong');
         })
