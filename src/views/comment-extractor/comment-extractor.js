@@ -33,7 +33,7 @@ const CommentExtractor = () => {
             dispatch(cancelLoading());
         }).catch(error => {
             dispatch(cancelLoading());
-            alert('Something went wrong');
+            alert('Something went wrong, Recorded ' + error);
         })
     }
 
