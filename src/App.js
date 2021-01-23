@@ -5,14 +5,14 @@ import HomePage from './views/homepage/homepage';
 import CommentExtractor from './views/comment-extractor/comment-extractor'
 import LoadScreen from './views/load-screen/load-screen'
 import { useSelector } from 'react-redux';
-import './App.css';
+import { AppContainer } from './App.styles'
 
 export const App = () => {
 
   const { loading } = useSelector(state => state.loadingReducer);
 
   return (
-    <div className="App">
+    <AppContainer>
       {
         loading
           ?
@@ -24,7 +24,7 @@ export const App = () => {
             <Route exact path='/search' component={CommentExtractor} />
           </div>
       }
-    </div>
+    </AppContainer>
   );
 }
 

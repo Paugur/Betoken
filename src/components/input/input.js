@@ -1,17 +1,21 @@
 import React from 'react'
-import './input.css'
+import {
+    Container,
+    InputContainer,
+    LabelContainer
+} from './input.styles'
 
 const Input = ({ inputChange, label, ...properties }) => (
-    <div className='inputArea' >
-        <input className='inputHandle' onChange={inputChange} {...properties} />
+    <Container >
+        <InputContainer onChange={inputChange} {...properties} />
         {
             label ?
-                (<label className={`${properties.value.length ? 'filled' : ''} inputHandleSize`}>
+                (<LabelContainer className={properties.value.length ? 'filled' : ''}>
                     {label}
-                </label>)
+                </LabelContainer>)
                 : null
         }
-    </div>
+    </Container>
 )
 
 export default Input;

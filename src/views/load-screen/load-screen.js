@@ -1,14 +1,14 @@
 import React from 'react';
 import Loading from '../../components/loading/loading'
-import './load-screen.css';
+import { BoldSpan } from './load-screen.styles';
 
 const LoadScreen = () => {
     return (
         <div>
             <Loading />
-            <span>
-                <b>Looking... Please Wait</b>
-            </span>
+            <BoldSpan>
+                Looking... Please Wait
+            </BoldSpan>
         </div>
     )
 }
