@@ -1,22 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import './navigation.css';
+import {
+    Header,
+    LeftOptions,
+    RightOptions,
+    LinkStyled
+} from './navigation.styles'
 
 const Navigation = () => {
 
     return (
-        <div className='header'>
-            <div className='starting'>
-                <Link className='start' to='/search'>
+        <Header>
+            <LeftOptions>
+                <LinkStyled to='/search'>
                     Query
-                </Link>
-            </div>
-            <div className='options'>
-                <Link className='option' to='/about'>
+                </LinkStyled>
+            </LeftOptions>
+            <RightOptions>
+                <LinkStyled to='/about'>
                     About
-                </Link>
-            </div>
-        </div>
+                </LinkStyled>
+            </RightOptions>
+        </Header>
     )
 }
 

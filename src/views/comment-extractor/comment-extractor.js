@@ -1,15 +1,17 @@
 import React from 'react';
-import Logo from '../../components/logo/logo'
-import Extractor from '../../api/comment-extractor/extractor'
-import './comment-extractor.css'
+import Extractor from '../../api/comment-extractor/extractor';
+import Logo from '../../components/logo/logo';
+import {
+    CommentExtractorContainer
+} from './comment-extractor.styles'
 
 
 const CommentExtractor = () => {
     return (
-        <div className="logo">
-            <Logo />
+        <CommentExtractorContainer>
+            <Logo isMainFocus />
             <Extractor />
-        </div>
+        </CommentExtractorContainer>
     )
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import YoutubeAPI from './youtube-extractor/youtube-extractor';
 import { useSelector } from 'react-redux';
-import './extractor.css'
 
 const Extractor = () => {
     const { mediaPref } = useSelector(state => state.userReducer);

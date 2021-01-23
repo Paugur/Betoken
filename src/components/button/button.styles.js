@@ -1,4 +1,6 @@
-.stylebutton {
+import styled from 'styled-components';
+
+export const StyledButton = styled.button`
     min-width: 100px;
     height: 40px;
     letter-spacing: 0.5px;
@@ -13,10 +15,11 @@
     display: flex;
     justify-content: center;
     border-radius: 10px;
-}
-.stylebutton:hover {
-    background-color: #6423a1;
-    color: white;
-    border: 1px solid #011F30;
-    transition: background-color 0.5s ease-out;
-}
+
+    &:hover {
+        background-color: #6423a1;
+        color: white;
+        border: 1px solid #011F30;
+        transition: background-color 0.5s ease-out;
+    }
+`;
