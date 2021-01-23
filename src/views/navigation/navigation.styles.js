@@ -1,5 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom'
+
+const disabled = css`
+    cursor: not-allowed;
+`;
+
+const active = css`
+    cursor: pointer;
+`;
+
+const cursor = (props) => {
+    if (props.disabled) {
+        return disabled;
+    } else {
+        return active;
+    }
+}
 
 export const Header = styled.div`
     display: flex;
@@ -19,8 +35,8 @@ export const RightOptions = styled.div`
 `;
 
 export const LinkStyled = styled(Link)`
-    padding: 25px;
-    cursor: pointer;
+    padding: 20px;
     color: white; 
     text-decoration: none;
+    ${cursor}
 `;
