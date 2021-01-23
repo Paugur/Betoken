@@ -1,12 +1,15 @@
 import React from 'react'
 import logo from '../../img/paugur.svg'
-import './logo.css'
+import {
+    FloatingContainer,
+    LogoContainer
+} from './logo.styles'
 
-const Logo = () => {
+const Logo = ({ ...props }) => {
     return (
-        <div className='floating'>
-            <img src={logo} className="logo" alt="Paugur" />
-        </div>
+        <FloatingContainer>
+            <LogoContainer src={logo} alt="Paugur" {...props} />
+        </FloatingContainer>
     )
 }
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import './button.css'
+import { StyledButton } from './button.styles';
 
 const Button = ({ label, ...properties }) => {
     return (
-        <button {...properties} className="stylebutton">
+        <StyledButton {...properties}>
             {label}
-        </button>
+        </StyledButton>
     )
 }
 
