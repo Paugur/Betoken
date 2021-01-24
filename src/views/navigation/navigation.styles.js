@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom'
 
 const disabled = css`
     cursor: not-allowed;
+    color: gray;
 `;
 
 const active = css`
     cursor: pointer;
+    color: white; 
 `;
 
 const cursor = (props) => {
@@ -36,7 +38,6 @@ export const RightOptions = styled.div`
 
 export const LinkStyled = styled(Link)`
     padding: 20px;
-    color: white; 
     text-decoration: none;
     ${cursor}
 `;
