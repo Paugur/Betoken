@@ -2,32 +2,29 @@ import pandas as pd
 import gensim
 from gensim.models import Word2Vec
 import ast
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from sklearn.model_selection import train_test_split
+import numpy as np
+
+
+SEED = 2222
+embedding_dimension = 128
 
 df = pd.read_csv("D:/pytorch_practice/sentiment_data/lemma_data.csv", header=None)
-
-embedding_dimension = 128
 
 sent_list = []
 for i in df[10]:
     sent_list.append(ast.literal_eval(i))
 
 model = Word2Vec(sent_list, size = embedding_dimension, window = 3, min_count = 3, workers = 4)
-#mode = Word2Vec(sentences = sent_list, size = embedding_dimension, window = 1, min_count = 1, workers = 4)
-
 word_vectors = model.wv
 
 
 
 del model
 
-
-
-
-
-import torch
-import torch.nn as nn
-import torch.optim as optim 
-SEED = 2222
 
 
 
@@ -102,7 +99,6 @@ criterion = nn.BCEWithLogitsLoss()
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-from sklearn.model_selection import train_test_split
 
 labels = df[7].values
 
@@ -115,7 +111,6 @@ X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, test_size = 
 
 batch_size = 64
 
-import numpy as np
 
 def iterator_func(X,y):
     size = len(X)
