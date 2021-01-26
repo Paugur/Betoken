@@ -80,6 +80,8 @@ class Pipeline:
         self.stopwords = remove_words - needed
         word_vectorizer = Word2Vec.load("./word2vec.model")
         self.embedding_model = word_vectorizer.wv
+        self.padding = len(self.embedding_model.index2word)
+        self.embedding_weights = torch.Tensor(self.embedding_model.vectors)
         del word_vectorizer
 
     def remove_unwanted(self, the_string):
