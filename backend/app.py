@@ -22,5 +22,13 @@ def get_raw_comments(ID, APIKEY):
     comments = stripp.raw_comments
     return {'comments': comments, 'video': video, 'channel': channel}
 
+@app.route('/manual/api/youtube_extractor/<ID>/<APIKEY>', methods=['GET'])
+def get_raw_comments_manual(ID, APIKEY):
+    stripp = CommentStripper(ID, APIKEY)
+    video = stripp.video_info
+    channel = stripp.channel_info
+    comments = stripp.raw_comments
+    return {'comments': comments, 'video': video, 'channel': channel}
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
