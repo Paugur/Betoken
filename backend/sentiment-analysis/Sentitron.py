@@ -23,7 +23,7 @@ class Sentitron:
         DROPOUT = 0.5
         self.rnn = RNN(INPUT_DIM, EMBEDDING_DIM, HIDDEN_DIM, OUTPUT_DIM, N_LAYERS, BIDIRECTIONAL, DROPOUT,
                        self.pipe_line.embedding_weights)
-        rnn_state_dict = torch.load('./sentiment')
+        rnn_state_dict = torch.load('./sentiment', map_location=torch.device('cpu'))
         self.rnn.load_state_dict(rnn_state_dict)
         self.rnn.to(self.device)
 
@@ -48,8 +48,7 @@ class Sentitron:
 
 if __name__ == '__main__':
     sentiment = Sentitron()
-    comment1 = "I never realized how attached to Felix’s face I was until now "
-    #comment1 = "asdasdas"
+    comment1 = "This is epic"
     print(comment1)
     feeling1 = sentiment.get_sentiment(comment1)
     #feeling2 = sentiment.get_sentiment(comment1)

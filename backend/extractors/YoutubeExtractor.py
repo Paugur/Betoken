@@ -1,6 +1,6 @@
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
-from add_sentiment import Sentitron
+from Sentitron import Sentitron
 import pandas as pd
 import json
 import googleapiclient.discovery
