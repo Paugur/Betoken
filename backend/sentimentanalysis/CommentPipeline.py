@@ -6,6 +6,9 @@ from spacy.lang.en.stop_words import STOP_WORDS
 import re
 import spacy
 from gensim.models import Word2Vec
+import os
+import os.path
+
 
 
 class Pipeline:
@@ -78,7 +81,10 @@ class Pipeline:
                   'least',
                   }
         self.stopwords = remove_words - needed
-        word_vectorizer = Word2Vec.load("./word2vec.model")
+        dr = os.getcwd()
+        fle = os.path.join(dr,'models','word2vec.model')
+        fullpath=os.path.expanduser(fle)
+        word_vectorizer = Word2Vec.load(fullpath)
         self.embedding_model = word_vectorizer.wv
         self.padding = len(self.embedding_model.index2word)
         self.embedding_weights = torch.Tensor(self.embedding_model.vectors)

@@ -1,6 +1,6 @@
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
-from Sentitron import Sentitron
+from ..sentimentanalysis import Sentitron
 import pandas as pd
 import json
 import googleapiclient.discovery
@@ -17,7 +17,7 @@ class CommentStripper:
                                                        self.api_version,
                                                        developerKey=developer_key)
 
-        self.sentitron = Sentitron()
+        self.sentitron = Sentitron.Sentitron()
         self.video_info = None
         self.channel_info = None
         self.raw_comments = None
@@ -49,15 +49,50 @@ class CommentStripper:
         channel_info = {}
         video_items = video_data["items"]
 
-        video_info.update({'videoTitle': video_items[0]['snippet']['title']})
-        video_info.update({'videoId': video_items[0]['id']})
-        channel_info.update({'channelId': video_items[0]['snippet']['channelId']})
-        channel_info.update({'channelTitle': video_items[0]['snippet']['channelTitle']})
-        video_info.update({'videoLikes': int(video_items[0]['statistics']['likeCount'])})
-        video_info.update({'videoDislikes': int(video_items[0]['statistics']['dislikeCount'])})
-        video_info.update({'videoViewCount': int(video_items[0]['statistics']['viewCount'])})
-        video_info.update({'videoCommentCount': int(video_items[0]['statistics']['commentCount'])})
-        video_info.update({'videoUploadTime': video_items[0]['snippet']['publishedAt']})
+        try:
+            video_info.update({'videoTitle': video_items[0]['snippet']['title']})
+        except Exception as e:
+            video_info.update({'videoTitle': '----------'})
+
+        try:
+            video_info.update({'videoId': video_items[0]['id']})
+        except Exception as e:
+            video_info.update({'videoId': '---------'})
+
+        try:
+            channel_info.update({'channelId': video_items[0]['snippet']['channelId']})
+        except Exception as e:
+            channel_info.update({'channelId': '----------'})
+
+        try:
+            channel_info.update({'channelTitle': video_items[0]['snippet']['channelTitle']})
+        except Exception as e:
+            channel_info.update({'channelTitle': '----------'})
+
+        try:
+            video_info.update({'videoLikes': int(video_items[0]['statistics']['likeCount'])})
+        except Exception as e:
+            video_info.update({'videoLikes': 0})
+
+        try:
+            video_info.update({'videoDislikes': int(video_items[0]['statistics']['dislikeCount'])})
+        except Exception as e:
+            video_info.update({'videoDislikes': 0})
+
+        try:
+            video_info.update({'videoViewCount': int(video_items[0]['statistics']['viewCount'])})
+        except Exception as e:
+            ideo_info.update({'videoViewCount': 0})
+
+        try:
+            video_info.update({'videoCommentCount': int(video_items[0]['statistics']['commentCount'])})
+        except Exception as e:
+            video_info.update({'videoCommentCount': 0})
+
+        try:
+            video_info.update({'videoUploadTime': video_items[0]['snippet']['publishedAt']})
+        except Exception as e:
+            video_info.update({'videoUploadTime': '---------'})
 
         self.video_info = video_info
         self.channel_info = channel_info
@@ -67,11 +102,14 @@ class CommentStripper:
                                                id=self.channel_info['channelId'],
                                                maxResults=50)
         response = request.execute()
-        for item in response["items"]:
-            if not item['statistics']['hiddenSubscriberCount']:
-                self.channel_info.update({'subcount': int(item['statistics']['subscriberCount'])})
-            else:
-                self.channel_info.update({'subcount': None, "commentChannelId": item['id']})
+        try:
+            for item in response["items"]:
+                if not item['statistics']['hiddenSubscriberCount']:
+                    self.channel_info.update({'subcount': int(item['statistics']['subscriberCount'])})
+                else:
+                    self.channel_info.update({'subcount': None, "commentChannelId": item['id']})
+        except Exception as e:
+            self.channel_info.update({'subcount': None, "commentChannelId": '--------'})
 
     def top_comment_strip(self):
         nextPage_token = None
@@ -97,7 +135,8 @@ class CommentStripper:
 
                 try:
                     self.comment_string_pop.append(x['snippet']['topLevelComment']['snippet']['textDisplay'])
-                    self.comment_sentiment_pop.append(self.sentitron.get_sentiment(x['snippet']['topLevelComment']['snippet']['textDisplay']))
+                    self.comment_sentiment_pop.append(
+                        self.sentitron.get_sentiment(x['snippet']['topLevelComment']['snippet']['textDisplay']))
                 except Exception as e:
                     self.comment_string_pop.append('00000000')
                     self.comment_sentiment_pop.append(0.0)

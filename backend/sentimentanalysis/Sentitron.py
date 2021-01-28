@@ -1,9 +1,10 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from CommentPipeline import Pipeline
-from RecurrentNeuralNetwork import RNN
-
+from ..sentimentanalysis import CommentPipeline
+from ..sentimentanalysis import RecurrentNeuralNetwork
+import os
+import os.path
 
 class Sentitron:
 
@@ -13,7 +14,7 @@ class Sentitron:
         else:
             self.device = 'cpu'
 
-        self.pipe_line = Pipeline()
+        self.pipe_line = CommentPipeline.Pipeline()
         INPUT_DIM = self.pipe_line.padding
         EMBEDDING_DIM = 128
         HIDDEN_DIM = 256
@@ -21,9 +22,12 @@ class Sentitron:
         N_LAYERS = 2
         BIDIRECTIONAL = True
         DROPOUT = 0.5
-        self.rnn = RNN(INPUT_DIM, EMBEDDING_DIM, HIDDEN_DIM, OUTPUT_DIM, N_LAYERS, BIDIRECTIONAL, DROPOUT,
+        self.rnn = RecurrentNeuralNetwork.RNN(INPUT_DIM, EMBEDDING_DIM, HIDDEN_DIM, OUTPUT_DIM, N_LAYERS, BIDIRECTIONAL, DROPOUT,
                        self.pipe_line.embedding_weights)
-        rnn_state_dict = torch.load('./sentiment', map_location=torch.device('cpu'))
+        dr = os.getcwd()
+        fle = os.path.join(dr, 'models', 'sentiment')
+        fullpath = os.path.expanduser(fle)
+        rnn_state_dict = torch.load(fullpath, map_location=torch.device('cpu'))
         self.rnn.load_state_dict(rnn_state_dict)
         self.rnn.to(self.device)
 
@@ -48,7 +52,7 @@ class Sentitron:
 
 if __name__ == '__main__':
     sentiment = Sentitron()
-    comment1 = "This is epic"
+    comment1 = "I just escaped and isis beheading "
     print(comment1)
     feeling1 = sentiment.get_sentiment(comment1)
     #feeling2 = sentiment.get_sentiment(comment1)
