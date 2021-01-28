@@ -9,7 +9,7 @@ const CommentView = () => {
         <DisplayContainer>
             {
                 comments.map(comment => (
-                    <Comment key={comment.commentId} label={comment.commentString} />
+                    <Comment key={comment.commentId} label={comment.commentString} sentiment={comment.commentSentiment} />
                 ))
             }
         </DisplayContainer>

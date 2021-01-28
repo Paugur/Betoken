@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const DisplayContainer = styled.div`
-    height: 400px;
-    width: 500px;
+    height: 600px;
+    width: 550px;
     overflow: scroll;
     background-color: white;
     padding: 10px;
-    margin: 20px 0px 0px 50px;
+    margin: 20px 50px;
 `;
