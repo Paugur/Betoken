@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from ..sentimentanalysis import CommentPipeline
-from ..sentimentanalysis import RecurrentNeuralNetwork
+from sentimentanalysis import CommentPipeline
+from sentimentanalysis import RecurrentNeuralNetwork
 import os
 import os.path
 

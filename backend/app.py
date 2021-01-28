@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
-from .extractors import YoutubeExtractor
+from extractors import YoutubeExtractor
 import json
 import os
 
@@ -15,7 +15,7 @@ def index():
 
 @app.route('/api/youtube_extractor/<ID>/<APIKEY>', methods=['POST'])
 def get_raw_comments(ID, APIKEY):
-    stripp = CommentStripper(ID, APIKEY)
+    stripp = YoutubeExtractor.CommentStripper(ID, APIKEY)
     video = stripp.video_info
     channel = stripp.channel_info
     comments = stripp.raw_comments
