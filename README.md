@@ -11,7 +11,7 @@ Our mission is to help creators understand their audience and use their feedback
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the dependencies for the backend.
 
 ```bash
-pip install
+pip install -r requirements.txt
 ```
 
 Use the package manager [npm](https://nodejs.org/en/) to install the dependencies for the frontend.
