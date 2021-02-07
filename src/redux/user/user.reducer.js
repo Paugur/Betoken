@@ -1,6 +1,8 @@
+import { MEDIA_YOUTUBE } from '../../types/media/media.types'
+
 const INITIAL_STATE = {
     apiKey: "",
-    mediaPref: "Youtube"
+    mediaPref: MEDIA_YOUTUBE
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -14,6 +16,26 @@ const userReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 apiKey: action.payload
+            }
+        case 'SET_MEDIA_YOUTUBE':
+            return {
+                ...state,
+                mediaPref: action.payload
+            }
+        case 'SET_MEDIA_TWITTER':
+            return {
+                ...state,
+                mediaPref: action.payload
+            }
+        case 'SET_MEDIA_REDDIT':
+            return {
+                ...state,
+                mediaPref: action.payload
+            }
+        case 'SET_MEDIA_AMAZON':
+            return {
+                ...state,
+                mediaPref: action.payload
             }
         default:
             return state;
