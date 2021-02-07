@@ -1,19 +1,22 @@
 import React from 'react';
+import YoutubeCommentView from './youtube-comment-view/youtube-comment-view'
 import { useSelector } from 'react-redux';
-import { DisplayContainer } from './comment-view.styles';
-import Comment from '../comment/comment';
+import {
+    MEDIA_YOUTUBE,
+} from '../../types/media/media.types'
 
 const CommentView = () => {
-    const { comments } = useSelector(state => state.mediaReducer);
-    return (
-        <DisplayContainer>
-            {
-                comments.map(comment => (
-                    <Comment key={comment.commentId} label={comment.commentString} sentiment={comment.commentSentiment} />
-                ))
-            }
-        </DisplayContainer>
-    )
+    const { mediaPref } = useSelector(state => state.userReducer);
+    switch (mediaPref) {
+        case MEDIA_YOUTUBE:
+            return (
+                <YoutubeCommentView />
+            )
+        default:
+            return (
+                <YoutubeCommentView />
+            )
+    }
 }
 
 export default CommentView;
