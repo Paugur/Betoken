@@ -16,8 +16,6 @@ import {
     clearComments
 } from '../../redux/media/media.actions'
 import {
-    ClosePopUp,
-    PopUpContainer,
     PopUpContent,
     YoutubeIconStyled,
     TwitterIconStyled,
@@ -27,9 +25,6 @@ import {
 
 export const SwitchPopUp = ({ toggle }) => {
     const dispatch = useDispatch();
-    const toggleSwitch = () => {
-        toggle();
-    }
     const changePref = (media) => {
         toggle();
         dispatch(clearComments());
@@ -54,28 +49,23 @@ export const SwitchPopUp = ({ toggle }) => {
         }
     }
     return (
-        <PopUpContainer>
-            <PopUpContent>
-                <ClosePopUp onClick={toggleSwitch}>
-                    &times;
-                </ClosePopUp>
-                <h2>
-                    Choose Prefered Media
-                </h2>
-                <IconButton onClick={() => changePref(MEDIA.YOUTUBE)}>
-                    <YoutubeIconStyled />
-                </IconButton>
-                <IconButton onClick={() => changePref(MEDIA.TWITTER)}>
-                    <TwitterIconStyled />
-                </IconButton>
-                <IconButton onClick={() => changePref(MEDIA.REDDIT)}>
-                    <RedditIconStyled />
-                </IconButton>
-                <IconButton onClick={() => changePref(MEDIA.AMAZON)}>
-                    <AmazonIconStyled />
-                </IconButton>
-            </PopUpContent>
-        </PopUpContainer>
+        <div>
+            <h2>
+                Choose Prefered Media
+            </h2>
+            <IconButton onClick={() => changePref(MEDIA.YOUTUBE)}>
+                <YoutubeIconStyled />
+            </IconButton>
+            <IconButton onClick={() => changePref(MEDIA.TWITTER)}>
+                <TwitterIconStyled />
+            </IconButton>
+            <IconButton onClick={() => changePref(MEDIA.REDDIT)}>
+                <RedditIconStyled />
+            </IconButton>
+            <IconButton onClick={() => changePref(MEDIA.AMAZON)}>
+                <AmazonIconStyled />
+            </IconButton>
+        </div>
     )
 }
 
@@ -89,12 +79,18 @@ const MediaSwitch = () => {
             <IconButton onClick={toggleSwitch}>
                 <MediaIcon />
             </IconButton>
-            {
-                switcher ?
-                    <SwitchPopUp toggle={toggleSwitch} />
-                    :
-                    null
-            }
+            <PopUpContent
+                isOpen={switcher}
+                onRequestClose={toggleSwitch}
+                contentLabel="Change Media Preference"
+                style={{
+                    overlay: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.25)'
+                    }
+                }}
+            >
+                <SwitchPopUp toggle={toggleSwitch} />
+            </PopUpContent>
         </div>
     )
 }
