@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Modal from 'react-modal';
 import {
     YoutubeFilled,
     TwitterSquareFilled,
@@ -40,24 +41,20 @@ export const AmazonIconStyled = styled(AmazonSquareFilled)`
     }
 `;
 
-export const PopUpContainer = styled.div`
-    position: fixed;
-    background: #00000050;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-`;
-
-export const PopUpContent = styled.div`
+export const PopUpContent = styled(Modal)`
     background-color: black;
+    color: white;
     position: absolute;
+    text-align: center;
     top: 20%;
     left: 29%;
     width: 40%;
     padding: 20px;
     border-radius: 5px;
     border: 2px solid black;
+    :focus{
+        outline: none;
+    }
 `;
 
 export const ClosePopUp = styled.span`
