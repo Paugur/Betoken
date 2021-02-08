@@ -1,39 +1,44 @@
+import {
+    MEDIA_SET_ACTIONS,
+    MEDIA_CLEAR_ACTIONS
+} from './media.types';
+
 export const setComments = comments => ({
-    type: 'SET_COMMENTS',
+    type: MEDIA_SET_ACTIONS.COMMENTS,
     payload: comments
 })
 
 export const clearComments = () => ({
-    type: 'CLEAR_COMMENTS',
+    type: MEDIA_CLEAR_ACTIONS.COMMENTS,
     payload: []
 })
 
 export const setMediaId = id => ({
-    type: 'SET_MEDIA_ID',
+    type: MEDIA_SET_ACTIONS.MEDIA_ID,
     payload: id
 })
 
 export const clearMediaId = () => ({
-    type: 'CLEAR_MEDIA_ID',
+    type: MEDIA_CLEAR_ACTIONS.MEDIA_ID,
     payload: ""
 })
 
 export const setCreatorInfo = info => ({
-    type: 'SET_CREATOR_INFO',
+    type: MEDIA_SET_ACTIONS.CREATOR_INFO,
     payload: info
 })
 
 export const clearCreatorInfo = () => ({
-    type: 'CLEAR_CREATOR_INFO',
+    type: MEDIA_CLEAR_ACTIONS.CREATOR_INFO,
     payload: []
 })
 
 export const setVideoInfo = info => ({
-    type: 'SET_VIDEO_INFO',
+    type: MEDIA_SET_ACTIONS.VIDEO_INFO,
     payload: info
 })
 
 export const clearVideoInfo = () => ({
-    type: 'CLEAR_VIDEO_INFO',
+    type: MEDIA_CLEAR_ACTIONS.VIDEO_INFO,
     payload: []
 })

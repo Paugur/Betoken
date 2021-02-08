@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 import MediaIcon from '../media-icon/media-icon';
 import { IconButton } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import {
-    MEDIA_YOUTUBE,
-    MEDIA_TWITTER,
-    MEDIA_REDDIT,
-    MEDIA_AMAZON
-} from '../../types/media/media.types'
+import { MEDIA } from '../../constants/media/media.constants'
 import {
     setMediaYoutube,
     setMediaTwitter,
@@ -42,16 +37,16 @@ export const SwitchPopUp = ({ toggle }) => {
         dispatch(clearMediaId());
         dispatch(clearVideoInfo());
         switch (media) {
-            case MEDIA_YOUTUBE:
+            case MEDIA.YOUTUBE:
                 dispatch(setMediaYoutube());
                 break;
-            case MEDIA_TWITTER:
+            case MEDIA.TWITTER:
                 dispatch(setMediaTwitter());
                 break;
-            case MEDIA_REDDIT:
+            case MEDIA.REDDIT:
                 dispatch(setMediaReddit());
                 break;
-            case MEDIA_AMAZON:
+            case MEDIA.AMAZON:
                 dispatch(setMediaAmazon());
                 break;
             default:
@@ -67,16 +62,16 @@ export const SwitchPopUp = ({ toggle }) => {
                 <h2>
                     Choose Prefered Media
                 </h2>
-                <IconButton onClick={() => changePref(MEDIA_YOUTUBE)}>
+                <IconButton onClick={() => changePref(MEDIA.YOUTUBE)}>
                     <YoutubeIconStyled />
                 </IconButton>
-                <IconButton onClick={() => changePref(MEDIA_TWITTER)}>
+                <IconButton onClick={() => changePref(MEDIA.TWITTER)}>
                     <TwitterIconStyled />
                 </IconButton>
-                <IconButton onClick={() => changePref(MEDIA_REDDIT)}>
+                <IconButton onClick={() => changePref(MEDIA.REDDIT)}>
                     <RedditIconStyled />
                 </IconButton>
-                <IconButton onClick={() => changePref(MEDIA_AMAZON)}>
+                <IconButton onClick={() => changePref(MEDIA.AMAZON)}>
                     <AmazonIconStyled />
                 </IconButton>
             </PopUpContent>
