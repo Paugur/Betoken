@@ -1,11 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import {
-    MEDIA_YOUTUBE,
-    MEDIA_TWITTER,
-    MEDIA_REDDIT,
-    MEDIA_AMAZON
-} from '../../types/media/media.types'
+import { MEDIA } from '../../constants/media/media.constants'
 import {
     YoutubeIconStyled,
     TwitterIconStyled,
@@ -16,19 +11,19 @@ import {
 const MediaIcon = () => {
     const { mediaPref } = useSelector(state => state.userReducer);
     switch (mediaPref) {
-        case MEDIA_YOUTUBE:
+        case MEDIA.YOUTUBE:
             return (
                 <YoutubeIconStyled />
             )
-        case MEDIA_TWITTER:
+        case MEDIA.TWITTER:
             return (
                 <TwitterIconStyled />
             )
-        case MEDIA_REDDIT:
+        case MEDIA.REDDIT:
             return (
                 <RedditIconStyled />
             )
-        case MEDIA_AMAZON:
+        case MEDIA.AMAZON:
             return (
                 <AmazonIconStyled />
             )

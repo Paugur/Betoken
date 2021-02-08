@@ -1,36 +1,35 @@
 import {
-    MEDIA_YOUTUBE,
-    MEDIA_TWITTER,
-    MEDIA_REDDIT,
-    MEDIA_AMAZON
-} from '../../types/media/media.types'
+    USER_API_KEY_ACTIONS,
+    USER_SET_MEDIA_PREF_ACTIONS
+} from './user.types';
+import { MEDIA } from '../../constants/media/media.constants';
 
 export const setApiKey = key => ({
-    type: 'SET_API_KEY',
+    type: USER_API_KEY_ACTIONS.SET_KEY,
     payload: key
 })
 
 export const clearApiKey = () => ({
-    type: 'CLEAR_API_KEY',
+    type: USER_API_KEY_ACTIONS.CLEAR_KEY,
     payload: ""
 })
 
 export const setMediaYoutube = () => ({
-    type: 'SET_MEDIA_YOUTUBE',
-    payload: MEDIA_YOUTUBE
+    type: USER_SET_MEDIA_PREF_ACTIONS.YOUTUBE,
+    payload: MEDIA.YOUTUBE
 })
 
 export const setMediaTwitter = () => ({
-    type: 'SET_MEDIA_TWITTER',
-    payload: MEDIA_TWITTER
+    type: USER_SET_MEDIA_PREF_ACTIONS.TWITTER,
+    payload: MEDIA.TWITTER
 })
 
 export const setMediaReddit = () => ({
-    type: 'SET_MEDIA_REDDIT',
-    payload: MEDIA_REDDIT
+    type: USER_SET_MEDIA_PREF_ACTIONS.REDDIT,
+    payload: MEDIA.REDDIT
 })
 
 export const setMediaAmazon = () => ({
-    type: 'SET_MEDIA_AMAZON',
-    payload: MEDIA_AMAZON
+    type: USER_SET_MEDIA_PREF_ACTIONS.AMAZON,
+    payload: MEDIA.AMAZON
 })

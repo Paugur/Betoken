@@ -1,11 +1,12 @@
 import React from 'react';
 import YoutubeAPI from './youtube-extractor/youtube-extractor';
 import { useSelector } from 'react-redux';
+import { MEDIA } from '../../constants/media/media.constants'
 
 const Extractor = () => {
     const { mediaPref } = useSelector(state => state.userReducer);
     switch (mediaPref) {
-        case 'Youtube':
+        case MEDIA.YOUTUBE:
             return (
                 <YoutubeAPI />
             )

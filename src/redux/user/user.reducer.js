@@ -1,38 +1,42 @@
-import { MEDIA_YOUTUBE } from '../../types/media/media.types'
+import {
+    USER_API_KEY_ACTIONS,
+    USER_SET_MEDIA_PREF_ACTIONS
+} from './user.types';
+import { MEDIA } from '../../constants/media/media.constants';
 
 const INITIAL_STATE = {
     apiKey: "",
-    mediaPref: MEDIA_YOUTUBE
+    mediaPref: MEDIA.YOUTUBE
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case 'SET_API_KEY':
+        case USER_API_KEY_ACTIONS.SET_KEY:
             return {
                 ...state,
                 apiKey: action.payload
             }
-        case 'CLEAR_API_KEY':
+        case USER_API_KEY_ACTIONS.CLEAR_KEY:
             return {
                 ...state,
                 apiKey: action.payload
             }
-        case 'SET_MEDIA_YOUTUBE':
+        case USER_SET_MEDIA_PREF_ACTIONS.YOUTUBE:
             return {
                 ...state,
                 mediaPref: action.payload
             }
-        case 'SET_MEDIA_TWITTER':
+        case USER_SET_MEDIA_PREF_ACTIONS.TWITTER:
             return {
                 ...state,
                 mediaPref: action.payload
             }
-        case 'SET_MEDIA_REDDIT':
+        case USER_SET_MEDIA_PREF_ACTIONS.REDDIT:
             return {
                 ...state,
                 mediaPref: action.payload
             }
-        case 'SET_MEDIA_AMAZON':
+        case USER_SET_MEDIA_PREF_ACTIONS.AMAZON:
             return {
                 ...state,
                 mediaPref: action.payload

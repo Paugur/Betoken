@@ -1,3 +1,8 @@
+import {
+    MEDIA_SET_ACTIONS,
+    MEDIA_CLEAR_ACTIONS
+} from './media.types';
+
 const INITIAL_STATE = {
     comments: [],
     creatorInfo: [],
@@ -7,42 +12,42 @@ const INITIAL_STATE = {
 
 const commentReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case 'SET_COMMENTS':
+        case MEDIA_SET_ACTIONS.COMMENTS:
             return {
                 ...state,
                 comments: action.payload
             }
-        case 'CLEAR_COMMENTS':
+        case MEDIA_CLEAR_ACTIONS.COMMENTS:
             return {
                 ...state,
                 comments: action.payload
             }
-        case 'SET_MEDIA_ID':
+        case MEDIA_SET_ACTIONS.MEDIA_ID:
             return {
                 ...state,
                 mediaId: action.payload
             }
-        case 'CLEAR_MEDIA_ID':
+        case MEDIA_CLEAR_ACTIONS.MEDIA_ID:
             return {
                 ...state,
                 mediaId: action.payload
             }
-        case 'SET_CREATOR_INFO':
+        case MEDIA_SET_ACTIONS.CREATOR_INFO:
             return {
                 ...state,
                 creatorInfo: action.payload
             }
-        case 'CLEAR_CREATOR_INFO':
+        case MEDIA_CLEAR_ACTIONS.CREATOR_INFO:
             return {
                 ...state,
                 creatorInfo: action.payload
             }
-        case 'SET_VIDEO_INFO':
+        case MEDIA_SET_ACTIONS.VIDEO_INFO:
             return {
                 ...state,
                 videoInfo: action.payload
             }
-        case 'CLEAR_VIDEO_INFO':
+        case MEDIA_CLEAR_ACTIONS.VIDEO_INFO:
             return {
                 ...state,
                 videoInfo: action.payload
