@@ -13,7 +13,7 @@ import { Route } from 'react-router-dom';
 import { AppContainer } from './App.styles'
 
 export const App = () => {
-
+  
   const { loading } = useSelector(state => state.loadingReducer);
 
   return (
