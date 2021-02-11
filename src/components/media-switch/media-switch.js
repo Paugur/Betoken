@@ -83,6 +83,7 @@ const MediaSwitch = () => {
                 isOpen={switcher}
                 onRequestClose={toggleSwitch}
                 contentLabel="Change Media Preference"
+                ariaHideApp={false}
                 style={{
                     overlay: {
                         backgroundColor: 'rgba(0, 0, 0, 0.25)'
