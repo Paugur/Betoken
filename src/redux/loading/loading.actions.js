@@ -1,11 +1,11 @@
-import { LOADING_APP_ACTIONS } from './loading.types';
+import { LOADING_APP_ACTIONS } from "./loading.types";
 
 export const startLoading = () => ({
-    type: LOADING_APP_ACTIONS.START,
-    payload: true
-})
+  type: LOADING_APP_ACTIONS.START,
+  payload: true,
+});
 
 export const cancelLoading = () => ({
-    type: LOADING_APP_ACTIONS.START,
-    payload: false
-})
+  type: LOADING_APP_ACTIONS.START,
+  payload: false,
+});
