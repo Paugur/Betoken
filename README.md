@@ -4,7 +4,7 @@ Paugur is an application that utilizes AI to understand audience input from vari
 
 This application is created by mainly using JavaScript and Python, with the help of frameworks like React.js and Flask.
 
-Our mission is to help creators understand their audience and use their feedback. 
+Our mission is to help creators understand their audience and use their feedback.
 
 ## Installation
 
@@ -46,7 +46,7 @@ npm run start
 
 This application's frontend was written using JavaScript and the [React Framework](https://reactjs.org/).
 
-These files can be located in the ```src``` directory.
+These files can be located in the `src` directory.
 
 Other directories such as:
 
@@ -57,7 +57,6 @@ src/views
 ```
 
 Will also mainly include files written in this framework.
-
 
 ## Testing
 
@@ -71,7 +70,7 @@ To write unit tests in the application, write a simple description and then the 
 
 ```javascript
 it("renders the foo component", () => {
-    render(<Foo/>);
+  render(<Foo />);
 });
 ```
 
@@ -88,34 +87,34 @@ foo.styles.js
 To write styles for a HTML tag, import the library and give a descriptive name.
 
 ```javascript
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const BarContainer = styled.div`
-    color: black;
-    overflow: scroll;
+  color: black;
+  overflow: scroll;
 `;
 ```
 
 To write styles on existing components, import the library and mention the component in the name.
 
 ```javascript
-import styled from 'styled-components';
-import Foo from './foo'
+import styled from "styled-components";
+import Foo from "./foo";
 
 export const FooStyledHomePage = styled(Foo)`
-    color: black;
-    overflow: scroll;
+  color: black;
+  overflow: scroll;
 `;
 ```
 
 To write normal css to integrate with the styled-components import css from [styled-components](https://styled-components.com/).
 
 ```javascript
-import {css} from 'styled-components';
+import { css } from "styled-components";
 
 const disabled = css`
-    cursor: not-allowed;
-    color: gray;
+  cursor: not-allowed;
+  color: gray;
 `;
 ```
 
@@ -123,7 +122,7 @@ const disabled = css`
 
 This application uses [Redux](https://react-redux.js.org/introduction/quick-start) to manage state throughout the application.
 
-All files related to the redux store will be located in the ```src/redux``` directory.
+All files related to the redux store will be located in the `src/redux` directory.
 
 When creating a new reducer make sure to initialize state and give detailed types.
 
@@ -169,20 +168,20 @@ export const setBar = (bar) => {
 When trying to either change state or access state we use the [useSelector and useDispatch](https://react-redux.js.org/api/hooks) hooks from [react-redux](https://react-redux.js.org/)
 
 ```javascript
-import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {setFoo, setBar} from './foobar.actions.js';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setFoo, setBar } from "./foobar.actions.js";
 
 export const FooBar = () => {
-    const {foo, bar} = useSelector(state => state.foobarReducer);
-    const dispatch = useDispatch();
+  const { foo, bar } = useSelector((state) => state.foobarReducer);
+  const dispatch = useDispatch();
 
-    return(
-        <div>
-            <button onClick={() => dispatch(setFoo(foo))}>{foo}</button>
-            <button onClick={() => dispatch(setBar(bar))}>{bar}</button>
-        </div>
-    )
+  return (
+    <div>
+      <button onClick={() => dispatch(setFoo(foo))}>{foo}</button>
+      <button onClick={() => dispatch(setBar(bar))}>{bar}</button>
+    </div>
+  );
 };
 ```
 
@@ -190,19 +189,19 @@ export const FooBar = () => {
 
 This application uses [axios](https://www.npmjs.com/package/axios) to fetch data.
 
-All the API requests will be inside the ```src/api``` directory.
+All the API requests will be inside the `src/api` directory.
 
 To use the request use the websitePrefix from the api-info.js file.
 
 ```javascript
-import {websitePrefix} from '../api-info';
+import { websitePrefix } from "../api-info";
 
 export const foobarApi = (foo, bar) => {
-    return axios({
-        url: websitePrefix + "/api/" + foo + bar,
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        mode: 'cors',
-    })
-}
+  return axios({
+    url: websitePrefix + "/api/" + foo + bar,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    mode: "cors",
+  });
+};
 ```

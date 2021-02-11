@@ -1,3 +1,1 @@
-export const clearAll = () => {
-
-}
+export const clearAll = () => {};
