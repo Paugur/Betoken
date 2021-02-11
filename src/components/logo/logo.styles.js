@@ -1,31 +1,36 @@
-import styled, { css } from 'styled-components';
-
+import styled, { css } from "styled-components";
 
 export const FloatingContainer = styled.div`
-    animation-name: float; 
-    animation-duration: 3s; 
-    animation-iteration-count: infinite; 
-    animation-timing-function: ease-in-out; 
-    @keyframes float { 
-        0% { transform: translate(0,  0px); } 
-        50%  { transform: translate(0, 15px); } 
-        100%   { transform: translate(0, -0px); }
+  animation-name: float;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  @keyframes float {
+    0% {
+      transform: translate(0, 0px);
     }
+    50% {
+      transform: translate(0, 15px);
+    }
+    100% {
+      transform: translate(0, -0px);
+    }
+  }
 `;
 
 const mainFocus = css`
-    height: 25vmin;
-    padding-bottom: 20px;
+  height: 25vmin;
+  padding-bottom: 20px;
 `;
 
-const getLogoStyles = props => {
-    if (props.isMainFocus) {
-        return mainFocus;
-    } else {
-        return mainFocus;
-    }
-}
+const getLogoStyles = (props) => {
+  if (props.isMainFocus) {
+    return mainFocus;
+  } else {
+    return mainFocus;
+  }
+};
 
 export const LogoContainer = styled.img`
-    ${getLogoStyles}
+  ${getLogoStyles}
 `;
