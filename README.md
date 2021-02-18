@@ -128,26 +128,27 @@ When creating a new reducer make sure to initialize state and give detailed type
 
 ```javascript
 INITIAL_STATE = {
-    foo: "",
-    bar: ""
+  foo: "",
+  bar: ""
 }
 
 export const foobarReducer = (state = "INITIAL_STATE", action){
-    switch(action.type){
-        case('SET_FOO'){
-            return{
-                ...state,
-                foo: action.payload
-            };
-        case('SET_BAR'){
-            return{
-                ...state,
-                bar: action.payload
-            };
-        }default{
-            return state;
-        }
+  switch(action.type){
+    case('SET_FOO'){
+      return{
+        ...state,
+        foo: action.payload
+      };
     }
+    case('SET_BAR'){
+      return{
+        ...state,
+        bar: action.payload
+      };
+    }default{
+      return state;
+    }
+  }
 }
 ```
 
@@ -155,13 +156,13 @@ When creating a new action for the reducer make sure to add both type and payloa
 
 ```javascript
 export const setFoo = (foo) => {
-    type: 'SET_FOO',
-    payload: foo
+  type: 'SET_FOO',
+  payload: foo
 };
 
 export const setBar = (bar) => {
-    type: 'SET_BAR',
-    payload: bar
+  type: 'SET_BAR',
+  payload: bar
 };
 ```
 
