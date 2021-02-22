@@ -1,6 +1,6 @@
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
-from sentimentanalysis import Sentitron
+from backend.Youtube.sentimentanalysis.Sentitron import Sentitron
 import pandas as pd
 import json
 import googleapiclient.discovery
@@ -17,7 +17,7 @@ class CommentStripper:
                                                        self.api_version,
                                                        developerKey=developer_key)
 
-        self.sentitron = Sentitron.Sentitron()
+        self.sentitron = Sentitron()
         self.video_info = None
         self.channel_info = None
         self.raw_comments = None

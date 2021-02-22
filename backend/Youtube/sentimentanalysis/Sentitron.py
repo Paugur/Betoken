@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from sentimentanalysis import CommentPipeline
-from sentimentanalysis import RecurrentNeuralNetwork
+from backend.Youtube.sentimentanalysis.CommentPipeline import Pipeline
+from backend.Youtube.sentimentanalysis.RecurrentNeuralNetwork import RNN
 import os
 import os.path
 
@@ -14,7 +14,7 @@ class Sentitron:
         else:
             self.device = 'cpu'
 
-        self.pipe_line = CommentPipeline.Pipeline()
+        self.pipe_line = Pipeline()
         INPUT_DIM = self.pipe_line.padding
         EMBEDDING_DIM = 128
         HIDDEN_DIM = 256
@@ -22,9 +22,10 @@ class Sentitron:
         N_LAYERS = 2
         BIDIRECTIONAL = True
         DROPOUT = 0.5
-        self.rnn = RecurrentNeuralNetwork.RNN(INPUT_DIM, EMBEDDING_DIM, HIDDEN_DIM, OUTPUT_DIM, N_LAYERS, BIDIRECTIONAL, DROPOUT,
+        self.rnn = RNN(INPUT_DIM, EMBEDDING_DIM, HIDDEN_DIM, OUTPUT_DIM, N_LAYERS, BIDIRECTIONAL, DROPOUT,
                        self.pipe_line.embedding_weights)
-        dr = os.getcwd()
+        #dr = os.getcwd()
+        dr = os.path.normpath(os.getcwd() + os.sep + os.pardir)
         fle = os.path.join(dr, 'models', 'sentiment')
         fullpath = os.path.expanduser(fle)
         rnn_state_dict = torch.load(fullpath, map_location=torch.device('cpu'))
@@ -52,7 +53,7 @@ class Sentitron:
 
 if __name__ == '__main__':
     sentiment = Sentitron()
-    comment1 = "I just escaped and isis beheading "
+    comment1 = "I hate you"
     print(comment1)
     feeling1 = sentiment.get_sentiment(comment1)
     #feeling2 = sentiment.get_sentiment(comment1)

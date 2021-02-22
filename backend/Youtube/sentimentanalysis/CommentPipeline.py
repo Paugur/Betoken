@@ -81,7 +81,8 @@ class Pipeline:
                   'least',
                   }
         self.stopwords = remove_words - needed
-        dr = os.getcwd()
+        #dr = os.getcwd()
+        dr = os.path.normpath(os.getcwd() + os.sep + os.pardir)
         fle = os.path.join(dr,'models','word2vec.model')
         fullpath=os.path.expanduser(fle)
         word_vectorizer = Word2Vec.load(fullpath)
