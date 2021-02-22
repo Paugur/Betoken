@@ -24,9 +24,9 @@ class Sentitron:
         DROPOUT = 0.5
         self.rnn = RNN(INPUT_DIM, EMBEDDING_DIM, HIDDEN_DIM, OUTPUT_DIM, N_LAYERS, BIDIRECTIONAL, DROPOUT,
                        self.pipe_line.embedding_weights)
-        #dr = os.getcwd()
-        dr = os.path.normpath(os.getcwd() + os.sep + os.pardir)
-        fle = os.path.join(dr, 'models', 'sentiment')
+        dr = os.getcwd()
+        #dr = os.path.normpath(os.getcwd() + os.sep + os.pardir)
+        fle = os.path.join(dr,'Youtube', 'models', 'sentiment')
         fullpath = os.path.expanduser(fle)
         rnn_state_dict = torch.load(fullpath, map_location=torch.device('cpu'))
         self.rnn.load_state_dict(rnn_state_dict)
