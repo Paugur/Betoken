@@ -82,7 +82,8 @@ class Pipeline:
                   }
         self.stopwords = remove_words - needed
         dr = os.getcwd()
-        fle = os.path.join(dr,'models','word2vec.model')
+        #dr = os.path.normpath(os.getcwd() + os.sep + os.pardir)
+        fle = os.path.join(dr,'Youtube','models','word2vec.model')
         fullpath=os.path.expanduser(fle)
         word_vectorizer = Word2Vec.load(fullpath)
         self.embedding_model = word_vectorizer.wv
