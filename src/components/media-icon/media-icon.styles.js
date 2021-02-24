@@ -1,10 +1,11 @@
 import styled, { css } from "styled-components";
+import { MEDIA_COLORS } from "../../constants/colors/colors.constants";
 import {
-  YoutubeFilled,
-  TwitterSquareFilled,
-  RedditSquareFilled,
-  AmazonSquareFilled,
-} from "@ant-design/icons";
+  AiFillYoutube,
+  AiFillTwitterSquare,
+  AiFillRedditSquare,
+  AiFillAmazonSquare,
+} from "react-icons/ai";
 
 const iconStyles = css`
   font-size: 3.5em;
@@ -12,30 +13,35 @@ const iconStyles = css`
   color: white;
 `;
 
-export const YoutubeIconStyled = styled(YoutubeFilled)`
+export const YoutubeIconStyled = styled(AiFillYoutube)`
   ${iconStyles}
   :hover {
-    color: #ff0202;
+    color: ${MEDIA_COLORS.YOUTUBE};
   }
 `;
 
-export const TwitterIconStyled = styled(TwitterSquareFilled)`
+export const TwitterIconStyled = styled(AiFillTwitterSquare)`
   ${iconStyles}
   :hover {
-    color: #04a2f2;
+    color: ${MEDIA_COLORS.TWITTER};
   }
 `;
 
-export const RedditIconStyled = styled(RedditSquareFilled)`
+export const RedditIconStyled = styled(AiFillRedditSquare)`
   ${iconStyles}
   :hover {
-    color: #f73e17;
+    color: ${MEDIA_COLORS.REDDIT};
   }
 `;
 
-export const AmazonIconStyled = styled(AmazonSquareFilled)`
+export const AmazonIconStyled = styled(AiFillAmazonSquare)`
   ${iconStyles}
   :hover {
-    color: #f68f00;
+    color: ${MEDIA_COLORS.AMAZON};
   }
+`;
+
+export const IconContainer = styled.div`
+  display: inline-block;
+  font-size: 2em;
 `;

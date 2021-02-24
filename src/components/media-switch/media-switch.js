@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import MediaIcon from "../media-icon/media-icon";
-import { IconButton } from "@material-ui/core";
+import {
+  YoutubeIcon,
+  TwitterIcon,
+  RedditIcon,
+  AmazonIcon,
+} from "../media-icon/media-icon";
 import { useDispatch } from "react-redux";
 import { MEDIA } from "../../constants/media/media.constants";
 import {
@@ -17,10 +21,8 @@ import {
 } from "../../redux/media/media.actions";
 import {
   PopUpContent,
-  YoutubeIconStyled,
-  TwitterIconStyled,
-  RedditIconStyled,
-  AmazonIconStyled,
+  PreferanceContainer,
+  MediaIconStyled,
 } from "./media-switch.styles";
 
 export const SwitchPopUp = ({ toggle }) => {
@@ -49,21 +51,13 @@ export const SwitchPopUp = ({ toggle }) => {
     }
   };
   return (
-    <div>
-      <h2>Choose Prefered Media</h2>
-      <IconButton onClick={() => changePref(MEDIA.YOUTUBE)}>
-        <YoutubeIconStyled />
-      </IconButton>
-      <IconButton onClick={() => changePref(MEDIA.TWITTER)}>
-        <TwitterIconStyled />
-      </IconButton>
-      <IconButton onClick={() => changePref(MEDIA.REDDIT)}>
-        <RedditIconStyled />
-      </IconButton>
-      <IconButton onClick={() => changePref(MEDIA.AMAZON)}>
-        <AmazonIconStyled />
-      </IconButton>
-    </div>
+    <PreferanceContainer>
+      <h1>Choose Prefered Media</h1>
+      <YoutubeIcon onClick={() => changePref(MEDIA.YOUTUBE)} />
+      <TwitterIcon onClick={() => changePref(MEDIA.TWITTER)} />
+      <RedditIcon onClick={() => changePref(MEDIA.REDDIT)} />
+      <AmazonIcon onClick={() => changePref(MEDIA.AMAZON)} />
+    </PreferanceContainer>
   );
 };
 
@@ -74,9 +68,7 @@ const MediaSwitch = () => {
   };
   return (
     <div>
-      <IconButton onClick={toggleSwitch}>
-        <MediaIcon />
-      </IconButton>
+      <MediaIconStyled onClick={toggleSwitch} />
       <PopUpContent
         isOpen={switcher}
         onRequestClose={toggleSwitch}
