@@ -6,21 +6,46 @@ import {
   TwitterIconStyled,
   RedditIconStyled,
   AmazonIconStyled,
+  IconContainer,
 } from "./media-icon.styles";
 
-const MediaIcon = () => {
+export const YoutubeIcon = ({ ...properties }) => (
+  <IconContainer {...properties}>
+    <YoutubeIconStyled />
+  </IconContainer>
+);
+
+export const TwitterIcon = ({ ...properties }) => (
+  <IconContainer {...properties}>
+    <TwitterIconStyled />
+  </IconContainer>
+);
+
+export const RedditIcon = ({ ...properties }) => (
+  <IconContainer {...properties}>
+    <RedditIconStyled />
+  </IconContainer>
+);
+
+export const AmazonIcon = ({ ...properties }) => (
+  <IconContainer {...properties}>
+    <AmazonIconStyled />
+  </IconContainer>
+);
+
+const MediaIcon = ({ ...properties }) => {
   const { mediaPref } = useSelector((state) => state.userReducer);
   switch (mediaPref) {
     case MEDIA.YOUTUBE:
-      return <YoutubeIconStyled />;
+      return <YoutubeIcon {...properties} />;
     case MEDIA.TWITTER:
-      return <TwitterIconStyled />;
+      return <TwitterIcon {...properties} />;
     case MEDIA.REDDIT:
-      return <RedditIconStyled />;
+      return <RedditIcon {...properties} />;
     case MEDIA.AMAZON:
-      return <AmazonIconStyled />;
+      return <AmazonIcon {...properties} />;
     default:
-      return <YoutubeIconStyled />;
+      return <YoutubeIcon {...properties} />;
   }
 };
 
