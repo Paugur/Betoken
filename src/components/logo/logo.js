@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../img/paugur.svg";
+import logo from "../../assets/paugur.svg";
 import { FloatingContainer, LogoContainer } from "./logo.styles";
 
 const Logo = ({ ...props }) => {
