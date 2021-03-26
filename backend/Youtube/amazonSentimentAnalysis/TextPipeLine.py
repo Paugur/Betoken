@@ -60,12 +60,12 @@ class TextPipeLine():
         return self._word_vectors
 
 if __name__ == '__main__':
-    theString = "Hello world, I am doing nothing"
-
-    pipe = TextPipeLine()
-    the_list = pipe.remove_unwanted(theString)
-    print(the_list)
-    vect = pipe._word2idx(the_list)
-    print(vect)
-
-    print(pipe.get_word_vectors())
+    # theString = "Hello world, I am doing nothing"
+    # 
+    # pipe = TextPipeLine()
+    # the_list = pipe.remove_unwanted(theString)
+    # print(the_list)
+    # vect = pipe._word2idx(the_list)
+    # print(vect)
+    #
+    # print(pipe.get_word_vectors())

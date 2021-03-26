@@ -47,13 +47,13 @@ class SentiGetter():
 
 if __name__ == '__main__':
 
-    theString = "omg dont use vim just use fing notepad++ or visual studios dont need to crap out a fing kidney stone you forgot how to save a file."
-    pipe = tpl()
-    the_list = pipe.remove_unwanted(theString)
-    print(the_list)
-    vect = pipe._word2idx(the_list)
-    print(vect)
-
-    geter = SentiGetter()
-
-    print(geter.get_predictions(vect))
+    # theString = "omg dont use vim just use fing notepad++ or visual studios dont need to crap out a fing kidney stone you forgot how to save a file."
+    # pipe = tpl()
+    # the_list = pipe.remove_unwanted(theString)
+    # print(the_list)
+    # vect = pipe._word2idx(the_list)
+    # print(vect)
+    #
+    # geter = SentiGetter()
+    #
+    # print(geter.get_predictions(vect))
