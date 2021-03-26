@@ -7,17 +7,22 @@ from nltk.corpus import stopwords
 from spacy.lang.en.stop_words import STOP_WORDS
 import re
 import spacy
+import os
+import os.path
 
 class TextPipeLine():
 
     def __init__(self):
-        model = Word2Vec.load("D:/PAUGUR/backend/Youtube/AmazonModels/AmazonDataWordVectoriz.model")
+        dr = os.getcwd()
+        fle = os.path.join(dr,'Youtube','AmazonModels','AmazonDataWordVectoriz.model')
+        model = Word2Vec.load(fle)
         self._word_vectors = model.wv
         del model
         stop_words = set(stopwords.words('english')).union(STOP_WORDS)
         self._nlp = spacy.load('en', disable =['parser', 'tagger', 'ner'])
         needed = set()
-        with open('D:/PAUGUR/backend/Youtube/AmazonModels/needed.txt', 'r') as file:
+        text_fle = os.path.join(dr,'Youtube','AmazonModels','needed.txt')
+        with open(text_fle, 'r') as file:
             for x in file.readlines():
                 needed.update({x.strip('\n')})
         self._stopwords = stop_words - needed
