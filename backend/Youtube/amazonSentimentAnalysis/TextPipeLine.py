@@ -59,9 +59,9 @@ class TextPipeLine():
     def get_word_vectors(self):
         return self._word_vectors
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
     # theString = "Hello world, I am doing nothing"
-    # 
+    #
     # pipe = TextPipeLine()
     # the_list = pipe.remove_unwanted(theString)
     # print(the_list)

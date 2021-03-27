@@ -45,7 +45,7 @@ class SentiGetter():
             sentiment_dict.update({"NEG":0.0})
             return sentiment_dict
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
 
     # theString = "omg dont use vim just use fing notepad++ or visual studios dont need to crap out a fing kidney stone you forgot how to save a file."
     # pipe = tpl()
