@@ -1,10 +1,10 @@
 import ssl
 from flask_pymongo import PyMongo
-from BaseAccess import DBAC
+from backend.DataBase.BaseAccess import DBAC
 import pymongo
 from werkzeug.security import generate_password_hash, check_password_hash
 
-class RegisterAndLogin:
+class UserInfoCollection:
 
     def __init__(self):
         connec_client = DBAC().get_client()
@@ -14,33 +14,27 @@ class RegisterAndLogin:
     def _get_user_collection(self):
         return self._user_collection
 
+    def get_user_collection_count(self) -> int:
+        return self._get_user_collection().find().count()
+
     def register_user(self, user_dict):
-        if self._check_existance(user_dict['email']):
-            return False
+        if self._check_existance_email(user_dict['email-address-primary']):
+            return {'status':False, "issue": "email-address-primary"}
+        elif self._check_existance_username(user_dict['user-id']):
+            return {'status':False, "issue": "user-id"}
         else:
-            user_dict.update({"hashed_password": generate_password_hash(user_dict['password'], "sha256"), 'tracked_data':[]})
-            user_dict.pop('password')
+            user_dict.update({"user-info-id-num":100_000 + self.get_user_collection_count(), "tracked-websites-and-videos":[]})
+            user_dict.update({"document-updated-timestamp": None, "document-delete-flag":1, "document-status":1})
+            user_dict.update({"user-password": generate_password_hash(user_dict['user-password'], "sha256")})
             self._get_user_collection().insert_one(user_dict)
-            return True
+            return {'status':True, "issue": None}
 
-    def _check_existance(self, email):
-        return len(list(self._get_user_collection().find({"email":email}))) > 0
+    def _check_existance_email(self, email: str) -> bool:
+        return len(list(self._get_user_collection().find({"email-address-primary":email}))) > 0
 
-    def _get_user(self, email):
-        document = list(self._get_user_collection().find({"email":email}))
-        return document[0] if len(document) > 0 else None
+    def _check_existance_username(self, username: str) -> bool:
+        return len(list(self._get_user_collection().find({"user-id":username}))) > 0
 
-    def user_login(self, sign_in_dict):
-        document_dict = self._get_user(sign_in_dict['email'])
-        return False if document_dict is None else check_password_hash(document_dict['hashed_password'], sign_in_dict['password'])
-
-if __name__ == '__main__':
-    reg = RegisterAndLogin()
-    temp_dict ={"password": 'test2', "email": "gneelamegan@gmail.com", 'time':"2:30pm"}
-    #print(reg.register_user(temp_dict))
-    print(reg.user_login(temp_dict))
-    #print(reg._get_user("riramgovindanwork@gmail.com"))
-    #test_dict = {}
-    #test_dict.update({"test1":1,"test2":2})
-    #test_dict.update({"test3":3,"test4":4})
-    #print(test_dict)
+#if __name__ == '__main__':
+    #reg = UserInfoCollection()
+    #temp_dict ={"password": 'test3', "email": "grsridevi@gmail.com", 'time':"2:30pm"}
