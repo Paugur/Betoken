@@ -2,7 +2,7 @@ import ssl
 from flask_pymongo import PyMongo
 from backend.DataBase.BaseAccess import DBAC
 import pymongo
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
 
 class UserInfoCollection:
 

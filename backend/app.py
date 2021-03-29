@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from backend.Youtube.YoutubeExtractor import CommentStripper
 from backend.DataBase.Register import UserInfoCollection as UIC
+from backend.DataBase.Login import UserInfoLoginCollection as UILC
 import json
 import os
 
@@ -32,6 +33,17 @@ def register_user(REGISTRATIONSTRING):
     registration_dict.update({"registration-creation-browser-info": browser_dict})
     user_adder = UIC()
     return jsonify(user_adder.register_user(registration_dict))
+
+@app.route('/api/log-login-attempt/<string:LOGINSTRING>/<string:password>', methods=['GET'])
+def log_login_attempt(LOGINSTRING, password):
+    user_agent = request.user_agent
+    login_object = UILC()
+    login_dict = json.loads(LOGINSTRING)
+    status_dict = login_object.login_user(login_dict['user-id'], password)
+    browser_dict = {"browser": user_agent.browser, "version": user_agent.version}
+    login_dict.update({"login-browser-info": browser_dict, "activity-info": status_dict})
+    login_object.log_login_request(login_dict)
+    return json.dumps(status_dict['login-success'])
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
