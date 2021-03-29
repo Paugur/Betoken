@@ -5,8 +5,8 @@ from backend.DataBase.Register import UserInfoCollection as UIC
 import json
 import os
 
-#app = Flask(__name__, static_folder='../build', static_url_path='/')
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../build', static_url_path='/')
+#app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
