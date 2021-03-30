@@ -1,6 +1,8 @@
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
-from backend.Youtube.sentimentanalysis.Sentitron import Sentitron
+#from backend.Youtube.sentimentanalysis.Sentitron import Sentitron
+from backend.Youtube.amazonSentimentAnalysis.SentimentProducer import SentiGetter as sg
+from backend.Youtube.amazonSentimentAnalysis.TextPipeLine import TextPipeLine as tpl
 import pandas as pd
 import json
 import googleapiclient.discovery
@@ -17,7 +19,9 @@ class CommentStripper:
                                                        self.api_version,
                                                        developerKey=developer_key)
 
-        self.sentitron = Sentitron()
+        #self.sentitron = Sentitron()
+        self.sentitron = sg()
+        self.pipe = tpl()
         self.video_info = None
         self.channel_info = None
         self.raw_comments = None
@@ -135,11 +139,12 @@ class CommentStripper:
 
                 try:
                     self.comment_string_pop.append(x['snippet']['topLevelComment']['snippet']['textDisplay'])
-                    self.comment_sentiment_pop.append(
-                        self.sentitron.get_sentiment(x['snippet']['topLevelComment']['snippet']['textDisplay']))
+                    the_vector_list = self.pipe.remove_unwanted(x['snippet']['topLevelComment']['snippet']['textDisplay'])
+                    vect = self.pipe._word2idx(the_vector_list)
+                    self.comment_sentiment_pop.append(self.sentitron.get_predictions(vect))
                 except Exception as e:
                     self.comment_string_pop.append('00000000')
-                    self.comment_sentiment_pop.append(0.0)
+                    self.comment_sentiment_pop.append({'NEU': 0.0, 'POS': 0.0, 'NEG': 0.0})
 
                 try:
                     self.comment_likes_pop.append(x['snippet']['topLevelComment']['snippet']['likeCount'])
@@ -226,10 +231,13 @@ class CommentStripper:
                     self.comment_id_pop.append('00000000')
                 try:
                     self.comment_string_pop.append(item['snippet']['textDisplay'])
-                    self.comment_sentiment_pop.append(self.sentitron.get_sentiment(item['snippet']['textDisplay']))
+                    the_vector_list = self.pipe.remove_unwanted(item['snippet']['textDisplay'])
+                    vect = self.pipe._word2idx(the_vector_list)
+                    self.comment_sentiment_pop.append(self.sentitron.get_predictions(vect))
+                    #self.comment_sentiment_pop.append(self.sentitron.get_sentiment(item['snippet']['textDisplay']))
                 except Exception as e:
                     self.comment_string_pop.append('00000000')
-                    self.comment_sentiment_pop.append(0.0)
+                    self.comment_sentiment_pop.append({'NEU': 0.0, 'POS': 0.0, 'NEG': 0.0})
                 try:
                     self.comment_likes_pop.append(item['snippet']['likeCount'])
                 except Exception as e:
