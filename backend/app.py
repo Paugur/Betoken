@@ -23,23 +23,32 @@ def get_raw_comments(ID, APIKEY):
     comments = stripp.raw_comments
     return {'comments': comments, 'video': video, 'channel': channel}
 
-@app.route('/api/register-user/<string:REGISTRATIONSTRING>', methods=['GET'])
-def register_user(REGISTRATIONSTRING):
+@app.route('/api/register-user/', methods=['GET'])
+def register_user():
     user_agent = request.user_agent
-    registration_dict = json.loads(REGISTRATIONSTRING)
+    registration_dict = request.json
     registration_dict.update({"registration-creation-device":user_agent.platform})
-    registration_dict.update({"registration-creation-language":request.accept_languages[0][0]})
-    browser_dict = {"browser": user_agent.browser, "version": user_agent.version}
+    try:
+        registration_dict.update({"registration-creation-language":request.accept_languages[0][0]})
+    except Exception as e:
+        registration_dict.update({"registration-creation-language":None})
+
+    try:
+        browser_dict = {"browser": user_agent.browser, "version": user_agent.version}
+    except Exception as e:
+        browser_dict = {"browser": None, "version": None}
+
     registration_dict.update({"registration-creation-browser-info": browser_dict})
+
     user_adder = UIC()
     return jsonify(user_adder.register_user(registration_dict))
 
-@app.route('/api/log-login-attempt/<string:LOGINSTRING>/<string:password>', methods=['GET'])
-def log_login_attempt(LOGINSTRING, password):
+@app.route('/api/log-login-attempt/', methods=['GET'])
+def log_login_attempt():
+    login_dict = request.json
     user_agent = request.user_agent
     login_object = UILC()
-    login_dict = json.loads(LOGINSTRING)
-    status_dict = login_object.login_user(login_dict['user-id'], password)
+    status_dict = login_object.login_user(login_dict['user-id'], login_dict['user-password'])
     browser_dict = {"browser": user_agent.browser, "version": user_agent.version}
     login_dict.update({"login-browser-info": browser_dict, "activity-info": status_dict})
     login_object.log_login_request(login_dict)
