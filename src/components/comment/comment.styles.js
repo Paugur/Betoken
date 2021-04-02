@@ -13,9 +13,9 @@ const neutral = css`
 `;
 
 const sentiment = (props) => {
-  const neu = props.sentiment.NEU;
-  const pos = props.sentiment.POS;
-  const neg = props.sentiment.NEG;
+  let neu = props.sentiment.NEU ? props.sentiment.NEU : 0;
+  let pos = props.sentiment.POS ? props.sentiment.POS : 0;
+  let neg = props.sentiment.NEG ? props.sentiment.NEG : 0;
   if (neu < pos) {
     if (pos < neg) {
       return negative;
