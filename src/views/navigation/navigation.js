@@ -1,28 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import {
-  Header,
-  LeftOptions,
-  RightOptions,
-  LinkStyled,
-} from "./navigation.styles";
+import Link from "../../components/link/link";
+import { Header, LeftOptions, RightOptions } from "./navigation.styles";
 
 const Navigation = () => {
   const { comments } = useSelector((state) => state.mediaReducer);
   return (
     <Header>
       <LeftOptions>
-        <LinkStyled to="/search">Query</LinkStyled>
-        {comments.length ? (
-          <LinkStyled to="/display">Analyze</LinkStyled>
-        ) : (
-          <LinkStyled as="div" disabled>
-            Analyze
-          </LinkStyled>
-        )}
+        <Link to="/search">Query</Link>
+        <Link to="/display" disabled={comments.length === 0}>
+          Analyze
+        </Link>
       </LeftOptions>
       <RightOptions>
-        <LinkStyled to="/about">About</LinkStyled>
+        <Link to="/about">About</Link>
       </RightOptions>
     </Header>
   );
