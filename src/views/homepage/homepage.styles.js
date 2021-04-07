@@ -11,6 +11,10 @@ export const LogoContainer = styled(Logo)`
   padding-bottom: 20px;
 `;
 
-export const HomePageContainer = styled.div`
+export const HomePageContentContainer = styled.div`
   padding-top: 12vw;
+`;
+
+export const HomePageContainer = styled.div`
+  text-align: center;
 `;
