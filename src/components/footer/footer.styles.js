@@ -6,6 +6,12 @@ export const FooterContainer = styled.footer`
   width: 100%;
 `;
 
+export const LeftOptions = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
 export const RightOptions = styled.div`
   display: flex;
   align-items: center;

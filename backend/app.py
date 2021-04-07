@@ -23,7 +23,7 @@ def get_raw_comments(ID, APIKEY):
     comments = stripp.raw_comments
     return {'comments': comments, 'video': video, 'channel': channel}
 
-@app.route('/api/register-user/', methods=['GET'])
+@app.route('/api/register-user/', methods=['POST', 'GET'])
 def register_user():
     user_agent = request.user_agent
     registration_dict = request.json
@@ -43,7 +43,7 @@ def register_user():
     user_adder = UIC()
     return jsonify(user_adder.register_user(registration_dict))
 
-@app.route('/api/log-login-attempt/', methods=['GET'])
+@app.route('/api/log-login-attempt/', methods=['POST', 'GET'])
 def log_login_attempt():
     login_dict = request.json
     user_agent = request.user_agent
