@@ -1,6 +1,6 @@
 import ssl
 from flask_pymongo import PyMongo
-#from BaseAccess import DBAC
+#from DataBase.BaseAccess import DBAC
 from backend.DataBase.BaseAccess import DBAC
 import pymongo
 from werkzeug.security import check_password_hash
@@ -34,6 +34,7 @@ class UserInfoLoginCollection:
 
     def log_login_request(self, login_dict):
         login_dict.update({"login-info-id":self.get_login_collection_count(), "activity-type":"login"})
+        login_dict.pop("user-password")
         self._get_login_collection().insert_one(login_dict)
 
 
