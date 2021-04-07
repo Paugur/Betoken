@@ -15,7 +15,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def index():
     return app.send_static_file('index.html')
 
-@app.route('/api/youtube_extractor/<ID>/<APIKEY>', methods=['POST', 'GET'])
+@app.route('/api/youtube-extractor/<ID>/<APIKEY>', methods=['POST', 'GET'])
 def get_raw_comments(ID, APIKEY):
     stripp = CommentStripper(ID, APIKEY)
     video = stripp.video_info
