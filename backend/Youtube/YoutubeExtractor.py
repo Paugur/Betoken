@@ -319,8 +319,11 @@ class CommentStripper:
         self.raw_comments = merge_df.to_json(orient='records')
 
     def date_to_seconds(self, date):
-        parsed_comment_date = dp.parse(date)
-        comment_date_in_seconds = parsed_comment_date.timestamp()
-        parsed_video_date = dp.parse(self.video_info['videoUploadTime'])
-        video_date_in_seconds = parsed_video_date.timestamp()
-        return comment_date_in_seconds - video_date_in_seconds
+        try:
+            parsed_comment_date = dp.parse(date)
+            comment_date_in_seconds = parsed_comment_date.timestamp()
+            parsed_video_date = dp.parse(self.video_info['videoUploadTime'])
+            video_date_in_seconds = parsed_video_date.timestamp()
+            return comment_date_in_seconds - video_date_in_seconds
+        except Exception as e:
+            return -1
