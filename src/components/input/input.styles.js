@@ -10,10 +10,32 @@ const filledStyles = css`
   color: ${descriptionMainColor};
 `;
 
+const small = css`
+  width: 15%;
+`;
+
+const medium = css`
+  width: 20%;
+`;
+
+const large = css`
+  width: 35%;
+`;
+
+const size = ({ size }) => {
+  switch (size) {
+    case "small":
+      return small;
+    case "large":
+      return large;
+    default:
+      return medium;
+  }
+};
+
 export const Container = styled.div`
   position: relative;
   margin: 45px 0;
-  margin-left: 41.5vw;
 
   input[type="password"] {
     letter-spacing: 0.2em;
@@ -27,10 +49,10 @@ export const InputContainer = styled.input`
   font-size: 18px;
   padding: 10px 10px 10px 10px;
   display: block;
-  width: 30%;
+  ${size}
   border: none;
-  border-radius: 0;
-  border: 1px solid grey;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
   margin: 25px 0;
 
   &:focus {

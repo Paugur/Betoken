@@ -50,9 +50,9 @@ def log_login_attempt():
     login_object = UILC()
     status_dict = login_object.login_user(login_dict['user-id'], login_dict['user-password'])
     browser_dict = {"browser": user_agent.browser, "version": user_agent.version}
-    login_dict.update({"login-browser-info": browser_dict, "activity-info": status_dict})
+    login_dict.update({"login-browser-info": browser_dict, "activity-info": {"login-success":status_dict["login-success"], "invalid-user-id":status_dict["invalid-user-id"], "invalid-pwd":status_dict["invalid-pwd"]}})
     login_object.log_login_request(login_dict)
-    return json.dumps(status_dict['login-success'])
+    return jsonify(status_dict)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
