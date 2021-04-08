@@ -9,6 +9,7 @@ import { ROUTES } from "./constants/routes/routes.constants";
 import { AppContainer } from "./App.styles";
 
 const HomePage = lazy(() => import("./views/homepage/homepage"));
+const SignIn = lazy(() => import("./api/user-info/sign-in/sign-in"));
 const CommentExtractor = lazy(() =>
   import("./views/comment-extractor/comment-extractor")
 );
@@ -28,6 +29,7 @@ export const App = () => {
           <Route exact path={ROUTES.BASE} component={HomePage} />
           <Route exact path={ROUTES.QUERY} component={CommentExtractor} />
           <Route exact path={ROUTES.DISPLAY} component={CommentDisplay} />
+          <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
         </Suspense>
       )}
     </AppContainer>
