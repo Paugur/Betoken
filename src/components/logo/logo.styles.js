@@ -23,11 +23,16 @@ const mainFocus = css`
   padding-bottom: 20px;
 `;
 
+const smallFocus = css`
+  height: 15vmin;
+  padding-bottom: 20px;
+`;
+
 const getLogoStyles = (props) => {
   if (props.isMainFocus) {
     return mainFocus;
   } else {
-    return mainFocus;
+    return smallFocus;
   }
 };
 

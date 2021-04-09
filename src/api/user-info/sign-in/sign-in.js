@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { websitePrefix } from "../../api-info";
+import { websitePrefix } from "../../../constants/api/api.constants";
 import Input from "../../../components/input/input";
 import Button from "../../../components/button/button";
 import { useDispatch } from "react-redux";
@@ -8,11 +8,15 @@ import {
   startLoading,
   cancelLoading,
 } from "../../../redux/loading/loading.actions";
+import Logo from "../../../components/logo/logo";
+import { ROUTES } from "../../../constants/routes/routes.constants";
 import {
   SignInContainer,
   ButtonContainer,
   InputContainer,
   BoldSpan,
+  LinkStyled,
+  SubmitContainer,
 } from "./sign-in.styles";
 
 export const SignInAPI = (username, password) => {
@@ -32,6 +36,7 @@ const SignIn = () => {
   const [username, setUsername] = useState("");
   const [pass, setPass] = useState("");
   const [invalid, setInvalid] = useState("");
+  let fail = "Wrong credentials.";
   const dispatch = useDispatch();
 
   const onUserChange = (event) => {
@@ -46,9 +51,10 @@ const SignIn = () => {
     dispatch(startLoading());
     SignInAPI(username, pass)
       .then((response) => {
-        if (response.data === false) {
-          setInvalid("Wrong Credentials, try again");
+        if (response.data["user-dict"] === null) {
+          setInvalid(fail);
           console.log(response);
+          console.log(pass);
         } else {
           setInvalid("");
           console.log(response);
@@ -63,6 +69,7 @@ const SignIn = () => {
 
   return (
     <SignInContainer>
+      <Logo />
       <BoldSpan color="white">Sign In</BoldSpan>
       <InputContainer>
         <Input
@@ -73,8 +80,6 @@ const SignIn = () => {
           size="large"
           inputChange={onUserChange}
         />
-      </InputContainer>
-      <InputContainer>
         <Input
           name="password"
           type="password"
@@ -84,10 +89,17 @@ const SignIn = () => {
           inputChange={onPassChange}
         />
       </InputContainer>
-      <ButtonContainer>
-        <Button onClick={onButtonRequest} label="Sign In" />
-      </ButtonContainer>
-      <BoldSpan color="red">{invalid}</BoldSpan>
+      <SubmitContainer>
+        <BoldSpan size={20} color="red">
+          {invalid}
+        </BoldSpan>
+        <ButtonContainer>
+          <Button onClick={onButtonRequest} label="Sign In" />
+        </ButtonContainer>
+        <LinkStyled to={ROUTES.SIGN_UP}>
+          New User? Click here to Register
+        </LinkStyled>
+      </SubmitContainer>
     </SignInContainer>
   );
 };

@@ -1,7 +1,8 @@
 export const ROUTES = {
   BASE: "/",
-  SIGN_UP: "/signup",
-  SIGN_IN: "/signin",
+  ABOUT: "/about/info",
+  SIGN_UP: "/user/register",
+  SIGN_IN: "/user/signin",
   DISPLAY: "/query/all",
   QUERY: "/query/new",
 };

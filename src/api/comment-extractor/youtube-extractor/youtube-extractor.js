@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { websitePrefix } from "../../api-info";
+import { websitePrefix } from "../../../constants/api/api.constants";
 import Input from "../../../components/input/input";
 import Button from "../../../components/button/button";
 import { useDispatch, useSelector } from "react-redux";
