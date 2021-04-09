@@ -29,14 +29,18 @@ export const SignInAPI = (username, password) => {
     },
     headers: { "Content-Type": "application/json" },
     mode: "cors",
-  });
+  })
+    .then((response) => response.data)
+    .catch((error) => {
+      alert("Something went wrong, Recorded " + error);
+    });
 };
 
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [pass, setPass] = useState("");
-  const [invalid, setInvalid] = useState("");
-  let fail = "Wrong credentials.";
+  const [invalid, setInvalid] = useState(false);
+  let fail = "Wrong credentials, try again.";
   const dispatch = useDispatch();
 
   const onUserChange = (event) => {
@@ -47,24 +51,13 @@ const SignIn = () => {
     setPass(event.target.value);
   };
 
-  const onButtonRequest = () => {
+  const onButtonRequest = async () => {
     dispatch(startLoading());
-    SignInAPI(username, pass)
-      .then((response) => {
-        if (response.data["user-dict"] === null) {
-          setInvalid(fail);
-          console.log(response);
-          console.log(pass);
-        } else {
-          setInvalid("");
-          console.log(response);
-        }
-        dispatch(cancelLoading());
-      })
-      .catch((error) => {
-        dispatch(cancelLoading());
-        alert("Something went wrong, Recorded " + error);
-      });
+    let resData = await SignInAPI(username, pass);
+    !resData["login-success"]
+      ? setInvalid(true)
+      : console.log(resData["user-dict"]);
+    dispatch(cancelLoading());
   };
 
   return (
@@ -90,9 +83,13 @@ const SignIn = () => {
         />
       </InputContainer>
       <SubmitContainer>
-        <BoldSpan size={20} color="red">
-          {invalid}
-        </BoldSpan>
+        {invalid ? (
+          <BoldSpan size={20} color="red">
+            {fail}
+          </BoldSpan>
+        ) : (
+          <BoldSpan size={20} color="red"></BoldSpan>
+        )}
         <ButtonContainer>
           <Button onClick={onButtonRequest} label="Sign In" />
         </ButtonContainer>

@@ -4,7 +4,7 @@ import { websitePrefix } from "../../../constants/api/api.constants";
 import Input from "../../../components/input/input";
 import Button from "../../../components/button/button";
 import { useDispatch, useSelector } from "react-redux";
-import { setApiKey } from "../../../redux/user/user.actions";
+import { setApiKey } from "../../../redux/client/client.actions";
 import { setMediaId } from "../../../redux/media/media.actions";
 import {
   startLoading,
@@ -19,7 +19,7 @@ import { ButtonContainer } from "./youtube-extractor.styles";
 
 export const youtubeExtractor = (mediaId, apiKey) => {
   return axios({
-    url: websitePrefix + "api/youtube_extractor/" + mediaId + "/" + apiKey,
+    url: websitePrefix + "api/youtube-extractor/" + mediaId + "/" + apiKey,
     method: "POST",
     headers: { "Content-Type": "application/json" },
     mode: "cors",
@@ -28,7 +28,7 @@ export const youtubeExtractor = (mediaId, apiKey) => {
 
 const YoutubeAPI = () => {
   const { mediaId } = useSelector((state) => state.mediaReducer);
-  const { apiKey } = useSelector((state) => state.userReducer);
+  const { apiKey } = useSelector((state) => state.clientReducer);
   const dispatch = useDispatch();
 
   const onKeyChange = (event) => {

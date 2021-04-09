@@ -20,7 +20,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const InputContainer = styled.div`
-  transform: translate(32%, -20%);
+  transform: translate(32%, -18%);
 `;
 
 const color = ({ color }) => {
