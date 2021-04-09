@@ -12,7 +12,7 @@ import {
   setMediaTwitter,
   setMediaReddit,
   setMediaAmazon,
-} from "../../redux/user/user.actions";
+} from "../../redux/client/client.actions";
 import {
   clearCreatorInfo,
   clearVideoInfo,
