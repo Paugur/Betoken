@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { websitePrefix } from "../../api-info";
+import { websitePrefix } from "../../../constants/api/api.constants";
 import Input from "../../../components/input/input";
 import Button from "../../../components/button/button";
 import { useDispatch } from "react-redux";
@@ -8,11 +8,15 @@ import {
   startLoading,
   cancelLoading,
 } from "../../../redux/loading/loading.actions";
+import Logo from "../../../components/logo/logo";
+import { ROUTES } from "../../../constants/routes/routes.constants";
 import {
   SignInContainer,
   ButtonContainer,
   InputContainer,
   BoldSpan,
+  LinkStyled,
+  SubmitContainer,
 } from "./sign-in.styles";
 
 export const SignInAPI = (username, password) => {
@@ -25,13 +29,18 @@ export const SignInAPI = (username, password) => {
     },
     headers: { "Content-Type": "application/json" },
     mode: "cors",
-  });
+  })
+    .then((response) => response.data)
+    .catch((error) => {
+      alert("Something went wrong, Recorded " + error);
+    });
 };
 
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [pass, setPass] = useState("");
-  const [invalid, setInvalid] = useState("");
+  const [invalid, setInvalid] = useState(false);
+  let fail = "Wrong credentials, try again.";
   const dispatch = useDispatch();
 
   const onUserChange = (event) => {
@@ -42,27 +51,18 @@ const SignIn = () => {
     setPass(event.target.value);
   };
 
-  const onButtonRequest = () => {
+  const onButtonRequest = async () => {
     dispatch(startLoading());
-    SignInAPI(username, pass)
-      .then((response) => {
-        if (response.data === false) {
-          setInvalid("Wrong Credentials, try again");
-          console.log(response);
-        } else {
-          setInvalid("");
-          console.log(response);
-        }
-        dispatch(cancelLoading());
-      })
-      .catch((error) => {
-        dispatch(cancelLoading());
-        alert("Something went wrong, Recorded " + error);
-      });
+    let resData = await SignInAPI(username, pass);
+    !resData["login-success"]
+      ? setInvalid(true)
+      : console.log(resData["user-dict"]);
+    dispatch(cancelLoading());
   };
 
   return (
     <SignInContainer>
+      <Logo />
       <BoldSpan color="white">Sign In</BoldSpan>
       <InputContainer>
         <Input
@@ -73,8 +73,6 @@ const SignIn = () => {
           size="large"
           inputChange={onUserChange}
         />
-      </InputContainer>
-      <InputContainer>
         <Input
           name="password"
           type="password"
@@ -84,10 +82,21 @@ const SignIn = () => {
           inputChange={onPassChange}
         />
       </InputContainer>
-      <ButtonContainer>
-        <Button onClick={onButtonRequest} label="Sign In" />
-      </ButtonContainer>
-      <BoldSpan color="red">{invalid}</BoldSpan>
+      <SubmitContainer>
+        {invalid ? (
+          <BoldSpan size={20} color="red">
+            {fail}
+          </BoldSpan>
+        ) : (
+          <BoldSpan size={20} color="red"></BoldSpan>
+        )}
+        <ButtonContainer>
+          <Button onClick={onButtonRequest} label="Sign In" />
+        </ButtonContainer>
+        <LinkStyled to={ROUTES.SIGN_UP}>
+          New User? Click here to Register
+        </LinkStyled>
+      </SubmitContainer>
     </SignInContainer>
   );
 };

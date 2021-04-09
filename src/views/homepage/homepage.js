@@ -12,7 +12,10 @@ import {
 const HomePage = () => {
   return (
     <HomePageContainer>
-      <Navigation rightComponents={<Link to={ROUTES.SIGN_IN}>Sign Up</Link>} />
+      <Navigation
+        leftComponents={<Link to={ROUTES.ABOUT}>About</Link>}
+        rightComponents={<Link to={ROUTES.SIGN_IN}>Sign Up</Link>}
+      />
       <HomePageContentContainer>
         <LogoContainer isMainFocus />
         <BoldSpan>AI Based Comment Analyzation Tool</BoldSpan>

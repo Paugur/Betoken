@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
-import { websitePrefix } from "../../api-info";
+import { websitePrefix } from "../../../constants/api/api.constants";
 import Input from "../../../components/input/input";
 import Button from "../../../components/button/button";
 import { useDispatch, useSelector } from "react-redux";
-import { setApiKey } from "../../../redux/user/user.actions";
+import { setApiKey } from "../../../redux/client/client.actions";
 import { setMediaId } from "../../../redux/media/media.actions";
 import {
   startLoading,
@@ -15,11 +15,11 @@ import {
   setVideoInfo,
   setCreatorInfo,
 } from "../../../redux/media/media.actions";
-import { ButtonContainer } from "./youtube-extractor.styles";
+import { ButtonContainer, InputContainer } from "./youtube-extractor.styles";
 
 export const youtubeExtractor = (mediaId, apiKey) => {
   return axios({
-    url: websitePrefix + "api/youtube_extractor/" + mediaId + "/" + apiKey,
+    url: websitePrefix + "api/youtube-extractor/" + mediaId + "/" + apiKey,
     method: "POST",
     headers: { "Content-Type": "application/json" },
     mode: "cors",
@@ -28,7 +28,7 @@ export const youtubeExtractor = (mediaId, apiKey) => {
 
 const YoutubeAPI = () => {
   const { mediaId } = useSelector((state) => state.mediaReducer);
-  const { apiKey } = useSelector((state) => state.userReducer);
+  const { apiKey } = useSelector((state) => state.clientReducer);
   const dispatch = useDispatch();
 
   const onKeyChange = (event) => {
@@ -56,20 +56,22 @@ const YoutubeAPI = () => {
 
   return (
     <div>
-      <Input
-        name="apiKey"
-        type="text"
-        label="API Key"
-        value={apiKey}
-        inputChange={onKeyChange}
-      />
-      <Input
-        name="mediaId"
-        type="text"
-        label="Video ID"
-        value={mediaId}
-        inputChange={onIdChange}
-      />
+      <InputContainer>
+        <Input
+          name="apiKey"
+          type="text"
+          label="API Key"
+          value={apiKey}
+          inputChange={onKeyChange}
+        />
+        <Input
+          name="mediaId"
+          type="text"
+          label="Video ID"
+          value={mediaId}
+          inputChange={onIdChange}
+        />
+      </InputContainer>
       <ButtonContainer>
         <Button onClick={onButtonRequest} label="Query" />
       </ButtonContainer>

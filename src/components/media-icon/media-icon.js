@@ -34,7 +34,7 @@ export const AmazonIcon = ({ ...properties }) => (
 );
 
 const MediaIcon = ({ ...properties }) => {
-  const { mediaPref } = useSelector((state) => state.userReducer);
+  const { mediaPref } = useSelector((state) => state.clientReducer);
   switch (mediaPref) {
     case MEDIA.YOUTUBE:
       return <YoutubeIcon {...properties} />;
