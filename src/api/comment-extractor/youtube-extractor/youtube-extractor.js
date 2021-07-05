@@ -15,7 +15,11 @@ import {
   setVideoInfo,
   setCreatorInfo,
 } from "../../../redux/media/media.actions";
-import { ButtonContainer, InputContainer } from "./youtube-extractor.styles";
+import {
+  ExtractorContainer,
+  ButtonContainer,
+  InputContainer,
+} from "./youtube-extractor.styles";
 
 export const youtubeExtractor = (mediaId, apiKey) => {
   return axios({
@@ -55,7 +59,7 @@ const YoutubeAPI = () => {
   };
 
   return (
-    <div>
+    <ExtractorContainer>
       <InputContainer>
         <Input
           name="apiKey"
@@ -75,7 +79,7 @@ const YoutubeAPI = () => {
       <ButtonContainer>
         <Button onClick={onButtonRequest} label="Query" />
       </ButtonContainer>
-    </div>
+    </ExtractorContainer>
   );
 };
 

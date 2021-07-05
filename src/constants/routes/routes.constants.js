@@ -5,4 +5,5 @@ export const ROUTES = {
   SIGN_IN: "/user/signin",
   DISPLAY: "/query/all",
   QUERY: "/query/new",
+  ANALYZER_TOOLS: "/tools",
 };

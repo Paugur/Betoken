@@ -54,9 +54,8 @@ const SignIn = () => {
   const onButtonRequest = async () => {
     dispatch(startLoading());
     let resData = await SignInAPI(username, pass);
-    !resData["login-success"]
-      ? setInvalid(true)
-      : console.log(resData["user-dict"]);
+    setInvalid(!resData["login-success"]);
+    console.log(resData["user-dict"]);
     dispatch(cancelLoading());
   };
 
