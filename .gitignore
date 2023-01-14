@@ -27,3 +27,4 @@ lib/
 bin/
 __pycache__/
 .idea/
+configuration.ini

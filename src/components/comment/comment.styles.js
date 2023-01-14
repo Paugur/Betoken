@@ -9,16 +9,25 @@ const negative = css`
 `;
 
 const neutral = css`
-  color: black;
+  color: blue;
 `;
 
 const sentiment = (props) => {
-  if (props.sentiment > 0.1) {
-    return positive;
-  } else if (props.sentiment < -0.1) {
-    return negative;
+  let neu = props.sentiment.NEU ? props.sentiment.NEU : 0;
+  let pos = props.sentiment.POS ? props.sentiment.POS : 0;
+  let neg = props.sentiment.NEG ? props.sentiment.NEG : 0;
+  if (neu < pos) {
+    if (pos < neg) {
+      return negative;
+    } else {
+      return positive;
+    }
   } else {
-    return neutral;
+    if (neu < neg) {
+      return negative;
+    } else {
+      return neutral;
+    }
   }
 };
 
